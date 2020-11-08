@@ -10,12 +10,14 @@ import org.springframework.context.annotation.Profile;
 
 import com.curso.webservice.entidades.Categoria;
 import com.curso.webservice.entidades.ItemPedido;
+import com.curso.webservice.entidades.Pagamento;
 import com.curso.webservice.entidades.Pedido;
 import com.curso.webservice.entidades.Produto;
 import com.curso.webservice.entidades.Users;
 import com.curso.webservice.entidades.enums.PedidoEstados;
 import com.curso.webservice.retositories.CategoriaRepository;
 import com.curso.webservice.retositories.ItemPedidoRepository;
+//import com.curso.webservice.retositories.PagamentoRepository;
 import com.curso.webservice.retositories.PedidoRepository;
 import com.curso.webservice.retositories.ProdutoRepository;
 import com.curso.webservice.retositories.UserRepository;
@@ -41,6 +43,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
+	
+	//@Autowired
+	//private PagamentoRepository pagamentoRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -88,6 +93,20 @@ public class TestConfig implements CommandLineRunner {
 		ItemPedido oi4 = new ItemPedido(p3, produto5, 2, produto5.getPreco()); 
 
 		itemPedidoRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+		
+		// Instaciando um Pagamento como só tem um pedido pago : 
+		Pagamento pg1 = new Pagamento(null, Instant.parse("2019-06-21T19:53:07Z"), p1);
+		p1.setPagamento(pg1);
+		
+		pedidoRepository.save(p1);
+		
+		
+		//Pagamento pg2 = new Pagamento(null, Instant.parse("2019-07-09T20:53:07Z"), p2);
+		//Pagamento pg3 = new Pagamento(null, Instant.parse("2019-07-23T19:00:07Z"), p3);
+		
+		//pagamentoRepository.saveAll(Arrays.asList(pg1, pg2, pg3));
+		
+		
 		
 	}
 	

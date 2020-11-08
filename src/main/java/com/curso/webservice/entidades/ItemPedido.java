@@ -13,13 +13,14 @@ public class ItemPedido implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	// Essa composição vai instanciar duas outras classes dentro de Pedido (Produto/Pedido)
+	// Essa composição vai instanciar duas outras classes dentro de Pedido (Produto/Pedido), que serão as FKs da tabela
 	@EmbeddedId
-	private ItemPedidoPk id = new ItemPedidoPk(); // Sempre instaciar a classe auxiliar
+	private ItemPedidoPk id = new ItemPedidoPk(); // Sempre instaciar a classe auxiliar na declaração
 	
 	private Integer quantidade;
 	private Double preco;
 	
+	// Esse contrutor vai receber instacias de Pedido e Produto, depois vai setta-los dentro do atributo ItemPedidoPk!!
 	public ItemPedido(Pedido pedido, Produto produto, Integer quantidade, Double preco) {
 		id.setPedidoId(pedido);
 		id.setProdutoId(produto);
@@ -63,6 +64,10 @@ public class ItemPedido implements Serializable{
 	
 	public void setProduto(Produto produto) {
 		id.setProdutoId(produto);
+	}
+	
+	public Double getSubTotal() {
+		return preco * quantidade;
 	}
 
 	@Override

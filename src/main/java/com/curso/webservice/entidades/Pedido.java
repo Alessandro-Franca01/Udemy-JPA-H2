@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,9 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.curso.webservice.entidades.enums.PedidoEstados;
 import com.fasterxml.jackson.annotation.JsonFormat;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 
 // ERRO: @Table(name = "tb_order") *Só que como não estou usando a nomeclatura do curso então não tive deu erro!
 @Entity
@@ -30,6 +33,10 @@ public class Pedido implements Serializable {
 		// Anotação para formata o json no ISO(alguma coisa ai)
 		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd'T'HH:mm:ss'Z'", timezone = "GMT" )
 		private Instant momento;
+		
+		// Mapeamento para os dois registro terem o mesmo ID
+		@OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)		
+		private Pagamento pagamento;
 		
 		// Esse atributo faz relação de 1 para 1 (Banco de dados)
 		@ManyToOne
@@ -90,6 +97,25 @@ public class Pedido implements Serializable {
 			if (estado != null) {
 				this.estado = estado.getCodigo();
 			}
+		}
+		
+		// Esse metodo que vai chamar o pagamento no JPA: Se eu excluisse esse metodo tbm resolveria o bug		
+		public Pagamento getPagamento() {
+			return pagamento;
+		}
+		
+		// Esse set vai ser usado para salvar o pagamento!!
+		public void setPagamento(Pagamento pg) {
+			this.pagamento = pg;
+		}
+		
+		// Metodo vai retornar o total do valor do pedido
+		public Double getTotal() {
+			Double resultado = 0.0;
+			for(ItemPedido item : this.itens ) {
+				resultado += item.getPreco();
+			}
+			return resultado;
 		}
 
 		@Override

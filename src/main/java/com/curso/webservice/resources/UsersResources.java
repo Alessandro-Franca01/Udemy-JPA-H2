@@ -1,13 +1,19 @@
 package com.curso.webservice.resources;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.curso.webservice.entidades.Users;
 import com.curso.webservice.service.UserService;
@@ -24,7 +30,8 @@ public class UsersResources {
 	@GetMapping
 	public ResponseEntity<List<Users>> fnidAll(){		
 		List<Users> listUsers = userService.findAll();
-		// Acho que é esse ResponseEntity que faz o retorno de Json
+		// Criar metodo para tratar erro de usuario não encontrado!
+		
 		return ResponseEntity.ok().body(listUsers);
 	}
 	
@@ -33,6 +40,37 @@ public class UsersResources {
 	public ResponseEntity<Users> findById(@PathVariable Long id){
 		Users user = userService.findById(id);		
 		return ResponseEntity.ok(user); 
+	}
+	
+	/*
+	 * A anotação de @PostMapping é para passar o metodo POST na requisição;
+	 * Já o @RequestBody é para deserialzar:
+	 * METODO FUNCIONANO: Porem tenho que passar os atributos com os nomes traduzidos
+	 */
+	@PostMapping
+	public ResponseEntity<Users> inserir(@RequestBody Users user){
+		user = userService.inserirUsers(user);
+		// Esse metodo é uma gambiarra do java
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
+		return ResponseEntity.created(uri).body(user);
+	}
+	
+	/*
+	 *  Verbo usardo pelo REST é DELETE para excluir registro do banco de dados
+	 *  @PathVariable é para o id ser reconhecido pela url
+	 *  O noContent e ResponseEntity<Void> são para receber a resposta em branco no corpo do HTML
+	 */
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id){
+		userService.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	// Metodo update: Funcionando!
+	@PutMapping("/{id}")
+	public ResponseEntity<Users> update(@PathVariable Long id, @RequestBody Users user){
+		userService.update(id, user);
+		return ResponseEntity.ok().body(user);
 	}
 
 }

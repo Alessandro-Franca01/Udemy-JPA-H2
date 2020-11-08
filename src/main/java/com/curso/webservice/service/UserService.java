@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.curso.webservice.entidades.Users;
 import com.curso.webservice.retositories.UserRepository;
+import com.curso.webservice.service.exceptions.ResourceNotFoundException.ResourceNotFoundException;
 
 @Service // registrando a classe de serviço no spring
 public class UserService {
@@ -23,8 +24,37 @@ public class UserService {
 	
 	// Tentando implementar um metodo para buscar um User por id: IMPLEMENTADO
 	public Users findById(Long id) {
-		Optional<Users> user = userRepository.findById(id);		
-		return user.get();
+		Optional<Users> user = userRepository.findById(id);
+		// Esse metodo vai tentar dá o get(), caso nao consigo vai levantar uma exeção: Usando uma expressão lambida!
+		// Dessa maneira está funcionando, porém com WARNING!
+		return user.orElseThrow(() -> new ResourceNotFoundException(id) {
+		}); 
+
 	}
+	
+	// Metodo para salvar um usuario
+	public Users inserirUsers(Users user) {
+		return userRepository.save(user);
+	}
+	
+	// Metodo para deletar um usuario pelo id
+	public void delete(Long id) {
+		userRepository.deleteById(id);
+	}
+	
+	// Metodo para alterar dados de um usuario: Retornando um resgistro instanciado e alterado
+	public Users update(Long id, Users obj) {
+		Users entidade = userRepository.getOne(id);
+		updateData(obj, entidade);		
+		return userRepository.save(entidade);
+	}
+	
+	private void updateData(Users obj, Users entidade) {
+		entidade.setNome(obj.getNome());
+		entidade.setEmail(obj.getEmail());
+		entidade.setTelefone(obj.getTelefone());
+	}
+	
+	
 	
 }
