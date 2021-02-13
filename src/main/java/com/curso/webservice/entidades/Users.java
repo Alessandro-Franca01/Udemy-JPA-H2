@@ -110,8 +110,6 @@ public class Users implements Serializable{
 			return false;
 		return true;
 	}
-
-	
 	
 	
 }

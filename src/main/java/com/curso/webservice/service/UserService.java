@@ -49,6 +49,7 @@ public class UserService {
 		return userRepository.save(entidade);
 	}
 	
+	// Esse metodo vai alterar todos os valores da classe antes de salvar
 	private void updateData(Users obj, Users entidade) {
 		entidade.setNome(obj.getNome());
 		entidade.setEmail(obj.getEmail());

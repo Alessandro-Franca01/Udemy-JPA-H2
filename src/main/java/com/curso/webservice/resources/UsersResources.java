@@ -30,8 +30,7 @@ public class UsersResources {
 	@GetMapping
 	public ResponseEntity<List<Users>> fnidAll(){		
 		List<Users> listUsers = userService.findAll();
-		// Criar metodo para tratar erro de usuario não encontrado!
-		
+		// Criar metodo para tratar erro de usuario não encontrado!		
 		return ResponseEntity.ok().body(listUsers);
 	}
 	
@@ -42,15 +41,10 @@ public class UsersResources {
 		return ResponseEntity.ok(user); 
 	}
 	
-	/*
-	 * A anotação de @PostMapping é para passar o metodo POST na requisição;
-	 * Já o @RequestBody é para deserialzar:
-	 * METODO FUNCIONANO: Porem tenho que passar os atributos com os nomes traduzidos
-	 */
 	@PostMapping
 	public ResponseEntity<Users> inserir(@RequestBody Users user){
 		user = userService.inserirUsers(user);
-		// Esse metodo é uma gambiarra do java
+		// Rever essa implementação depois
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
 		return ResponseEntity.created(uri).body(user);
 	}
@@ -59,6 +53,7 @@ public class UsersResources {
 	 *  Verbo usardo pelo REST é DELETE para excluir registro do banco de dados
 	 *  @PathVariable é para o id ser reconhecido pela url
 	 *  O noContent e ResponseEntity<Void> são para receber a resposta em branco no corpo do HTML
+	 *  Sem tratamento antes do Delete
 	 */
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id){
