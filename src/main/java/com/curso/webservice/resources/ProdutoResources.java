@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.curso.webservice.entidades.Produto;
 import com.curso.webservice.service.ProdutoService;
 
-// Nesse caso essa classe faz o papel do Controller
 @RestController
 @RequestMapping(value = "/produtos")
 public class ProdutoResources {
@@ -20,19 +19,19 @@ public class ProdutoResources {
 	@Autowired
 	private ProdutoService produtoService;
 	
-	// Esse metodo vai responder uma requisão GET enviando o usuario
 	@GetMapping
 	public ResponseEntity<List<Produto>> fnidAll(){		
-		List<Produto> listProduto = produtoService.findAll();
-		// Acho que é esse ResponseEntity que faz o retorno de Json
+		List<Produto> listProduto = produtoService.findAll();	
 		return ResponseEntity.ok().body(listProduto);
 	}
-	
-	// Metodo de busca por Id: FUNCIONANDO!
+		
 	@GetMapping("/{id}")
 	public ResponseEntity<Produto> findById(@PathVariable Long id){
 		Produto user = produtoService.findById(id);		
 		return ResponseEntity.ok(user); 
 	}
+	
+	// Posso criar um metodo para mostrar os produtos do usuario
+	
 
 }

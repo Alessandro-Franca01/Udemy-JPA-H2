@@ -20,7 +20,6 @@ public enum PedidoEstados {
 		return codigo;
 	}
 	
-	// ERRO: PQ o throw estava dentro do for!!!
 	public static PedidoEstados estadoDoCodigo(int codigo) {
 		for(PedidoEstados valor : PedidoEstados.values()) {
 			if(valor.getCodigo() == codigo) {
