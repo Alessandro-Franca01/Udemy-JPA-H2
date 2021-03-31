@@ -1,0 +1,67 @@
+{
+	"Inpetor":{
+	"matricula": "123456",
+	"nome": "SANDRINHO FRANÇA",
+	"cpf":"46625939056",
+	"telefone": "12345678901",
+	"email": "ALE@GAMIL.COM",
+	"senha":"SAN111",
+	"turno": "DIA"
+	},
+	"Inspetor2":{
+	"matricula": "123111",
+	"nome": "GUSTAVO FRANÇA",
+	"cpf":"79805242099",
+	"telefone": "10102222333",
+	"email": "LE@GAMIL.COM",
+	"senha":"GUTY111",
+	"turno": "NOITE"
+	},
+	"Guarda":{
+	"matricula": "123132",
+	"nome": "SERGIO SILVA",
+	"telefone": "83989731123",
+	"email": "SERGIO@GAMIL.COM",
+	"estatus": "ATIVO"
+	},
+	"Guarnicao":{
+	"nome":"LIRA MEZENGA",
+    "matricula":"112124",
+    "telefone":"12345908901",
+    "funcao":"MOTORISTA",
+    "inspetor": {
+        "id": 1,
+        "matricula": "123456",
+        "nome": "ALESSANDRO FRANCA",
+        "cpf": "08539703432",
+        "telefone": "83998123455",
+        "email": "ALE@GMAIL.COM",
+        "turno": "DIA"
+        }
+	},
+	"Servico1":{
+    "inicio":"2021-02-12T07:00:00",
+    "fim":"2021-02-12T19:00:00",
+    "passagem":"S/A"
+    },
+    "Servico2":{
+    "inicio":"2021-02-12T19:00:00",
+    "fim":"2021-02-13T07:00:00",
+    "passagem":"S/A"
+    },
+    "Servico3":{
+    "inicio":"2021-02-13T07:00:00",
+    "fim":"2021-02-13T19:00:00",
+    "passagem":"S/A"
+    },
+    "Servico4":{
+    "inicio":"2021-02-13T19:00:00",
+    "fim":"2021-02-14T07:00:00",
+    "passagem":"S/A"
+    },
+    "Servico5":{
+    "inicio":"2021-02-14T07:00:00",
+    "fim":"2021-02-14T19:00:00",
+    "passagem":"S/A"
+    }	
+}

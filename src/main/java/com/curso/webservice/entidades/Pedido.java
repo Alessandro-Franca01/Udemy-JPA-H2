@@ -17,9 +17,7 @@ import javax.persistence.OneToOne;
 
 import com.curso.webservice.entidades.enums.PedidoEstados;
 import com.fasterxml.jackson.annotation.JsonFormat;
-//import com.fasterxml.jackson.annotation.JsonIgnore;
 
-// ERRO: @Table(name = "tb_order") *Só que como não estou usando a nomeclatura do curso então não tive deu erro!
 @Entity
 public class Pedido implements Serializable {
 		
@@ -38,7 +36,7 @@ public class Pedido implements Serializable {
 		@OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)		
 		private Pagamento pagamento;
 		
-		// Esse atributo faz relação de 1 para 1 (Banco de dados)
+		// Esse atributo faz relação de n para 1 (Banco de dados)
 		@ManyToOne
 		@JoinColumn(name = "cliente_id")
 		private Users cliente;

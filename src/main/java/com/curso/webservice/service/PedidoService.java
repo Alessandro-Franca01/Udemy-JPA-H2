@@ -26,5 +26,7 @@ public class PedidoService {
 		return pedido.get();
 	}
 	
+	// Criar o metodo para salvar pedido:
+	
 	
 }

@@ -22,8 +22,10 @@ public class ItemPedidoPk implements Serializable{
 	
 	// Esse aqui vai representar a associação entre ItemPedido e Produto
 	@ManyToOne
-	@JoinColumn(name ="id_produto")
+	@JoinColumn(name ="id_produto") // Será que isso aqui está certo mesmo ????
 	private Produto produtoId;
+	
+	// Não tem construtor nessa classe!!
 		
 	public Pedido getPedidoId() {
 		return pedidoId;
