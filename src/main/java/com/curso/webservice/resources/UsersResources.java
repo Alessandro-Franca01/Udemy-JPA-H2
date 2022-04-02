@@ -26,9 +26,14 @@ public class UsersResources {
 	
 	@Autowired
 	private UserService userService;
+	
+	@GetMapping("/teste")
+	public ResponseEntity<String> teste(){		
+		return ResponseEntity.ok().body("TESTANDO SOMENTE END POINT DA API");
+	}
 		
 	@GetMapping
-	public ResponseEntity<List<Users>> fnidAll(){		
+	public ResponseEntity<List<Users>> findAll(){		
 		List<Users> listUsers = userService.findAll();		
 		return ResponseEntity.ok().body(listUsers);
 	}
