@@ -1,0 +1,9 @@
+02-04-2022 11:12:01.987 | 1040 | [restartedMain] | INFO  | c.c.w.WebserviceApplication - Starting WebserviceApplication on DESKTOP-UQM9L6U with PID 17572 (C:\Users\Sandro\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\Udemy-JPA-H2\target\classes started by Sandro in C:\Users\Sandro\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\Udemy-JPA-H2)
+02-04-2022 11:12:01.991 | 1044 | [restartedMain] | INFO  | c.c.w.WebserviceApplication - The following profiles are active: test
+02-04-2022 11:12:07.240 | 6293 | [restartedMain] | INFO  | c.c.w.WebserviceApplication - Started WebserviceApplication in 5.789 seconds (JVM running for 7.275)
+02-04-2022 11:12:07.429 | 6482 | [restartedMain] | INFO  | c.c.w.WebserviceApplication - Testando Log com SLF4J!!!
+02-04-2022 11:21:41.390 | 580443 | [RMI TCP Connection(13)-127.0.0.1] | WARN  | o.s.b.f.s.DisposableBeanAdapter - Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+15-04-2022 10:21:51.470 | 1222 | [restartedMain] | INFO  | c.c.w.WebserviceApplication - Starting WebserviceApplication on DESKTOP-UQM9L6U with PID 15216 (C:\Users\Sandro\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\Udemy-JPA-H2\target\classes started by Sandro in C:\Users\Sandro\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\Udemy-JPA-H2)
+15-04-2022 10:21:51.477 | 1229 | [restartedMain] | INFO  | c.c.w.WebserviceApplication - The following profiles are active: test
+15-04-2022 10:21:56.987 | 6739 | [restartedMain] | INFO  | c.c.w.WebserviceApplication - Started WebserviceApplication in 6.132 seconds (JVM running for 8.13)
+15-04-2022 10:21:57.255 | 7007 | [restartedMain] | INFO  | c.c.w.WebserviceApplication - Testando Log com SLF4J!!!
