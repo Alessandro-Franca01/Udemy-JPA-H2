@@ -4,5 +4,5 @@ package com.curso.webservice.config;
 //@EnableAuthorizationServer 
 //@EnableResourceServer  
 public class SecurityConfig {
-
+// Classe não utilizada
 }
